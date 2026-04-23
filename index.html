@@ -321,22 +321,44 @@
       margin: 0 auto 48px;
     }
     .hook-card {
-      background: var(--white);
+      position: relative;
       border-radius: var(--radius);
-      padding: 28px 24px;
+      overflow: hidden;
       box-shadow: var(--shadow);
       text-align: center;
-      border-top: 3px solid var(--accent-soft);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: flex-end;
     }
-    .hook-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .hook-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hook-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(30,50,40,0.72) 40%, rgba(30,50,40,0.18) 100%);
+    }
+    .hook-card-body {
+      position: relative;
+      z-index: 1;
+      padding: 20px 20px 24px;
+      width: 100%;
+    }
+    .hook-card .icon { font-size: 28px; margin-bottom: 8px; }
     .hook-card h3 {
       font-family: 'Noto Serif JP', serif;
       font-size: 16px;
       font-weight: 600;
       line-height: 1.6;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      color: #fff;
     }
-    .hook-card p { font-size: 13px; color: var(--text-light); line-height: 1.8; }
+    .hook-card p { font-size: 12px; color: rgba(255,255,255,0.88); line-height: 1.8; }
     .hook-answer { text-align: center; max-width: 680px; margin: 0 auto; }
     .hook-answer .big-text {
       font-family: 'Noto Serif JP', serif;
@@ -770,7 +792,7 @@
     <p class="hero-tagline">ここから訪問看護リハビリケア　看護師募集</p>
     <h1 class="hero-title">
       「自分が目指した看護は<br>これでいいのか？」
-      <span class="hero-title-sub">自分が命に対する感情が薄くなっているんではないかと感じ、悩んだ方へ。</span>
+      <span class="hero-title-sub">自分が命に対する感情が<br>薄くなっているんではないかと感じ、<br>悩んだ方へ。</span>
     </h1>
     <p class="hero-sub">横浜市・川崎市でご自宅に近い店舗を複数ご案内します。</p>
     <div class="hero-badges">
@@ -802,31 +824,44 @@
     <div class="hook-intro reveal">
       <h2 class="section-title">自分の大切な人を<br>看てもらいたいと思えるサービスを</h2>
       <div class="divider"></div>
-      <p style="margin-top:20px; font-size:15px; color:var(--text-light); line-height:1.95;">
-        私たちは、スタッフ一人ひとりが「ここで働いていてよかった」と思える職場をつくることが、<br>
-        利用者様への最高のサービスにつながると信じています。
+      <p style="margin-top:20px; font-size:15px; color:var(--text-light); line-height:1.95; text-align:center;">
+        この理念の中には、看護に対する想いや経験がいっぱい詰まっています。<br>
+        "ここ"ろと"から"だ、どちらも支えたい想いも込めて、<br>
+        仕事に向き合っている私たちです。
       </p>
     </div>
     <div class="hook-cards">
       <div class="hook-card reveal reveal-delay-1">
-        <div class="icon">😔</div>
-        <h3>病院勤務に<br>疲れていませんか？</h3>
-        <p>忙しすぎて患者さんとゆっくり話す時間もない。そんな日々が続いていませんか。</p>
+        <img src="./images/hook1.jpg" alt="" class="hook-card-bg">
+        <div class="hook-card-overlay"></div>
+        <div class="hook-card-body">
+          <div class="icon">😔</div>
+          <h3>これって、<br>看護なのかな？</h3>
+          <p>忙しすぎて患者さんとゆっくり話す時間もない。そんな日々が続いていませんか。</p>
+        </div>
       </div>
       <div class="hook-card reveal reveal-delay-2">
-        <div class="icon">🌙</div>
-        <h3>夜勤を<br>なくしましょう。</h3>
-        <p>体力的に限界、家族との時間がとれない。訪問看護なら夜勤なしで働けます。</p>
+        <img src="./images/hook2.jpg" alt="" class="hook-card-bg">
+        <div class="hook-card-overlay"></div>
+        <div class="hook-card-body">
+          <div class="icon">🌙</div>
+          <h3>夜勤を<br>なくしましょう。</h3>
+          <p>夜勤のない規則正しい生活リズムが、相手と笑顔でじっくり向き合う『心の余裕』に繋がります。</p>
+        </div>
       </div>
       <div class="hook-card reveal reveal-delay-3">
-        <div class="icon">❤️</div>
-        <h3>患者さんと<br>ゆっくり関わりたい。</h3>
-        <p>一人ひとりの生活に寄り添う看護がしたい。そう思ってこの仕事を選んだはずです。</p>
+        <img src="./images/hook3.jpg" alt="" class="hook-card-bg">
+        <div class="hook-card-overlay"></div>
+        <div class="hook-card-body">
+          <div class="icon">❤️</div>
+          <h3>患者さんと<br>ゆっくり関わりたい。</h3>
+          <p>一人ひとりの生活に寄り添う看護がしたい。そう思ってこの仕事を選んだはずです。</p>
+        </div>
       </div>
     </div>
     <div class="hook-answer reveal">
       <p class="big-text">その想いを、<br>ここから実現できます。</p>
-      <p>ここから訪問看護リハビリケアには、「病院での働き方に疑問を感じて転職した」スタッフが多数います。<br>未経験でも、ブランクがあっても、丁寧なフォロー体制でスタートできる環境を整えています。</p>
+      <p style="text-align:center;">ここから訪問看護リハビリケアには、<br>「病院での働き方に疑問を感じて転職した」<br>スタッフが多数います。<br>未経験でも、ブランクがあっても、<br>丁寧なフォロー体制でスタートできる環境を整えています。</p>
     </div>
   </div>
 </section>
@@ -1073,7 +1108,7 @@
       <span class="section-label">Our Team</span>
       <h2 class="section-title">スタッフ・職場の雰囲気</h2>
       <div class="divider"></div>
-      <p class="section-lead">「自分の大切な人を看てもらいたい」と思えるサービスを、チームで届けています。</p>
+      <p class="section-lead">「自分の大切な人を看てもらいたいと思えるサービスを」の理念を大切に、チームで届けています。</p>
     </div>
     <div class="gallery-grid">
       <div class="gallery-item reveal reveal-delay-1">
@@ -1120,7 +1155,7 @@
       </div>
       <div class="faq-item reveal">
         <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">夜勤はありますか？オンコールが心配です。</div><div class="faq-toggle"></div></div>
-        <div class="faq-a"><div class="faq-a-inner"><strong>夜勤はありません。</strong>基本的に土日祝日休み・日勤のみの勤務です。<br>オンコール対応については別途手当を支給しています。詳細は採用面談でご説明します。</div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>夜勤はありません。</strong>基本的に土日祝日休み・日勤のみの勤務です。ですが、医療処置が必要な場合など希望をとって土日に組むこともあります。休日出勤の別途手当も支給しています。詳細は見学時やオンラインのカジュアル面談でご説明します。</div></div>
       </div>
       <div class="faq-item reveal">
         <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">1人で利用者様のお宅に行くのが不安です。</div><div class="faq-toggle"></div></div>
