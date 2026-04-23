@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>看護師募集 | ここから訪問看護リハビリケア</title>
+  <meta name="description" content="ここから訪問看護リハビリケアでは看護師（正・准）を募集中。土日祝休み・夜勤なし・件数調整OK。未経験スタッフ9割活躍中。横浜・川崎・町田エリア。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://creative-sunburst-1cd79e.netlify.app">
+  <meta property="og:title" content="看護師募集 | ここから訪問看護リハビリケア">
+  <meta property="og:description" content="土日祝休み・夜勤なし・件数調整OK。未経験スタッフ9割活躍中。まずはお気軽にご相談ください。">
+  <meta property="og:image" content="https://creative-sunburst-1cd79e.netlify.app/images/hero1-pc.jpg">
+  <meta property="og:site_name" content="ここから訪問看護リハビリケア">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #FEFAF6;
+      --bg-alt:       #FDF4EE;
+      --primary:      #7ABFB3;
+      --primary-light:#D6F0EB;
+      --primary-dark: #5A9E93;
+      --accent:       #FF7A50;
+      --accent-hover: #E86030;
+      --accent-soft:  #FFB08A;
+      --text:         #3A2E28;
+      --text-light:   #7A6860;
+      --border:       #EAD8CE;
+      --white:        #FFFFFF;
+      --shadow:       0 4px 28px rgba(90,158,147,0.12);
+      --shadow-warm:  0 4px 24px rgba(255,122,80,0.14);
+      --radius:       16px;
+      --radius-sm:    10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.85;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ── Sticky CTA ── */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 999;
+      background: rgba(254,250,246,0.97);
+      backdrop-filter: blur(10px);
+      padding: 10px 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      box-shadow: 0 -2px 20px rgba(58,46,40,0.10);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta a {
+      flex: 1;
+      max-width: 170px;
+      text-align: center;
+      padding: 11px 6px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s;
+    }
+    .sticky-cta a:hover { opacity: 0.85; }
+    .sticky-cta .btn-apply    { background: var(--accent); color: #fff; box-shadow: 0 3px 12px rgba(255,122,80,0.30); }
+    .sticky-cta .btn-line-sticky { background: #06C755; color: #fff; box-shadow: 0 3px 12px rgba(6,199,85,0.28); }
+    .sticky-cta .btn-consult  { background: var(--primary); color: #fff; box-shadow: 0 3px 12px rgba(122,191,179,0.30); }
+
+    /* ── Section ── */
+    .section { padding: 88px 20px; }
+    .section-alt { background: var(--bg-alt); }
+    .container { max-width: 920px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary-dark);
+      background: var(--primary-light);
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 5vw, 32px);
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .section-lead {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 48px;
+    }
+    .text-center { text-align: center; }
+    .divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-soft));
+      margin: 14px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── Wave Dividers ── */
+    .wave { line-height: 0; overflow: hidden; margin-bottom: -2px; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── Buttons ── */
+    .btn-line {
+      background: #06C755;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 18px rgba(6,199,85,0.32);
+      transition: all 0.25s;
+    }
+    .btn-line:hover { background: #05b04c; transform: translateY(-2px); }
+
+    /* Inline CTA block */
+    .inline-cta {
+      background: linear-gradient(135deg, #FFF5EF 0%, #FEF0E8 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      margin-top: 56px;
+    }
+    .inline-cta p { font-size: 15px; color: var(--primary-dark); font-weight: 700; margin-bottom: 20px; }
+    .inline-cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .inline-cta-btns a {
+      padding: 13px 30px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-ic-main {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(255,122,80,0.32);
+    }
+    .btn-ic-main:hover { background: var(--accent-hover); transform: translateY(-2px); }
+    .btn-ic-sub {
+      background: transparent;
+      color: var(--primary-dark);
+      border: 2px solid var(--primary);
+    }
+    .btn-ic-sub:hover { background: var(--primary); color: #fff; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 600px;
+      max-height: 920px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-slides { position: absolute; inset: 0; }
+    .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease; }
+    .hero-slide.active { opacity: 1; }
+    .hero-slide picture { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero-slide picture img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,20,15,0.20) 0%, rgba(30,20,15,0.55) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #fff;
+      padding: 0 24px;
+      max-width: 740px;
+    }
+    .hero-tagline {
+      font-size: clamp(11px, 2.5vw, 13px);
+      letter-spacing: 0.2em;
+      opacity: 0.88;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(24px, 5.5vw, 46px);
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.30);
+    }
+    .hero-title-sub {
+      font-size: 0.58em;
+      font-weight: 400;
+      display: block;
+      text-align: center;
+      opacity: 0.93;
+      margin-top: 6px;
+    }
+    .hero-sub {
+      font-size: clamp(13px, 2.5vw, 15px);
+      opacity: 0.9;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .hero-badge {
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.40);
+      color: #fff;
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .btn-hero-line {
+      background: #06C755;
+      color: #fff;
+      padding: 15px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(6,199,85,0.40);
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-hero-line:hover { transform: translateY(-2px); }
+    .btn-hero-main {
+      background: var(--accent);
+      color: #fff;
+      padding: 15px 28px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(255,122,80,0.40);
+      transition: all 0.25s;
+    }
+    .btn-hero-main:hover { transform: translateY(-2px); }
+    .btn-hero-sub {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      padding: 15px 24px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.55);
+      transition: all 0.25s;
+    }
+    .btn-hero-sub:hover { background: rgba(255,255,255,0.28); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent); }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── HOOK ── */
+    .hook-section { background: var(--bg-alt); padding: 80px 20px; }
+    .hook-intro { text-align: center; margin-bottom: 48px; }
+    .hook-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 860px;
+      margin: 0 auto 48px;
+    }
+    .hook-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      border-top: 3px solid var(--accent-soft);
+    }
+    .hook-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .hook-card h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    .hook-card p { font-size: 13px; color: var(--text-light); line-height: 1.8; }
+    .hook-answer { text-align: center; max-width: 680px; margin: 0 auto; }
+    .hook-answer .big-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 5vw, 29px);
+      font-weight: 600;
+      color: var(--primary-dark);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .hook-answer p { font-size: 15px; color: var(--text-light); line-height: 1.95; }
+
+    /* ── NUMBERS ── */
+    .numbers-section {
+      background: linear-gradient(135deg, #3D6B62 0%, #2A4E47 100%);
+      padding: 80px 20px;
+      color: #fff;
+    }
+    .numbers-title {
+      text-align: center;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(18px, 4vw, 24px);
+      color: rgba(255,255,255,0.95);
+      margin-bottom: 48px;
+    }
+    .numbers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 720px;
+      margin: 0 auto 48px;
+    }
+    @media (min-width: 560px) { .numbers-grid { grid-template-columns: repeat(4, 1fr); } }
+    .number-item {
+      text-align: center;
+      padding: 28px 16px;
+      background: rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .number-item .num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(32px, 7vw, 48px);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+    .number-item .num span { font-size: 0.50em; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+    .number-item .num-label { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 8px; line-height: 1.5; }
+    .numbers-cta { text-align: center; }
+    .numbers-cta p { font-size: 14px; color: rgba(255,255,255,0.88); margin-bottom: 20px; }
+    .numbers-cta-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .numbers-cta-btns a {
+      padding: 13px 32px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-nc-main {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(255,122,80,0.38);
+    }
+    .btn-nc-main:hover { transform: translateY(-2px); }
+    .btn-nc-sub {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.50);
+    }
+    .btn-nc-sub:hover { background: rgba(255,255,255,0.28); }
+
+    /* ── FEATURES（写真入りカード） ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 480px) { .features-grid { grid-template-columns: 1fr; } }
+    .feature-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 36px rgba(90,158,147,0.18); }
+    .feature-card-photo {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .feature-card-inner { padding: 20px 22px 24px; }
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .feature-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .feature-card p  { font-size: 12px; color: var(--text-light); line-height: 1.8; }
+
+    /* ── WORK CONTENT ── */
+    .work-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    @media (min-width: 700px) { .work-split { grid-template-columns: 1fr 1fr; } }
+    .work-photo img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 699px) { .work-photo img { aspect-ratio: 16/9; } }
+    .work-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .work-card-header { background: var(--primary); color: #fff; padding: 20px 24px; }
+    .work-card-header h3 { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 600; margin-bottom: 4px; }
+    .work-card-header p  { font-size: 12px; opacity: 0.85; }
+    .work-card-body { padding: 24px; }
+    .work-card-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .work-card-body ul li {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.7;
+    }
+    .work-card-body ul li::before { content: '●'; color: var(--primary); font-size: 8px; margin-top: 6px; flex-shrink: 0; }
+
+    /* ── DAY FLOW（丸型写真付き） ── */
+    .flow-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (min-width: 700px) { .flow-split { grid-template-columns: 1fr 1fr; } }
+    .flow-photo img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 699px) { .flow-photo img { aspect-ratio: 4/3; } }
+    .flow-timeline { position: relative; }
+    .flow-timeline::before {
+      content: '';
+      position: absolute;
+      left: 56px; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--primary-light);
+    }
+    @media (max-width: 480px) { .flow-timeline::before { left: 42px; } }
+    .flow-item { display: flex; gap: 20px; margin-bottom: 24px; position: relative; }
+    .flow-time {
+      width: 56px;
+      flex-shrink: 0;
+      text-align: right;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      padding-top: 6px;
+      line-height: 1.3;
+    }
+    @media (max-width: 480px) { .flow-time { width: 42px; font-size: 10px; } }
+    .flow-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 3px solid var(--bg);
+      flex-shrink: 0;
+      margin-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-content {
+      flex: 1;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px 14px;
+      box-shadow: 0 2px 14px rgba(90,158,147,0.09);
+    }
+    .flow-content-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .flow-step-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      flex-shrink: 0;
+      border: 2px solid var(--primary-light);
+    }
+    .flow-content h4 { font-size: 13px; font-weight: 700; color: var(--text); padding-top: 2px; }
+    .flow-content p  { font-size: 12px; color: var(--text-light); line-height: 1.7; }
+
+    /* ── GALLERY ── */
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    @media (min-width: 640px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+    .gallery-item { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; position: relative; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform 0.4s ease; }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(30,20,15,0.60) 0%, transparent 100%);
+      color: #fff;
+      font-size: 11px;
+      padding: 20px 12px 10px;
+      font-weight: 500;
+    }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 780px; margin: 0 auto; }
+    .faq-item {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(90,158,147,0.09);
+    }
+    .faq-q { display: flex; align-items: center; gap: 14px; padding: 20px 24px; cursor: pointer; user-select: none; }
+    .faq-q-icon {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .faq-q-text { flex: 1; font-size: 14px; font-weight: 700; line-height: 1.6; color: var(--text); }
+    .faq-toggle { width: 24px; height: 24px; flex-shrink: 0; position: relative; }
+    .faq-toggle::before, .faq-toggle::after { content: ''; position: absolute; background: var(--primary); border-radius: 2px; }
+    .faq-toggle::before { width: 14px; height: 2px; top: 11px; left: 5px; }
+    .faq-toggle::after  { width: 2px; height: 14px; top: 5px; left: 11px; transition: opacity 0.3s; }
+    .faq-item.open .faq-toggle::after { opacity: 0; }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 400px; }
+    .faq-a-inner { padding: 0 24px 20px 66px; font-size: 13px; color: var(--text-light); line-height: 1.9; }
+    .faq-a-inner strong { color: var(--primary-dark); }
+
+    /* ── VOICES（写真付きカード） ── */
+    .voices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .voice-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+    }
+    .voice-card-photo {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--primary-light);
+      margin: 0 auto 14px;
+      display: block;
+    }
+    .voice-quote {
+      font-size: 32px;
+      color: var(--primary-light);
+      font-family: 'Noto Serif JP', serif;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .voice-text { font-size: 13px; color: var(--text); line-height: 1.9; margin-bottom: 16px; text-align: left; }
+    .voice-author { display: flex; align-items: center; gap: 8px; justify-content: center; }
+    .voice-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .voice-role { font-size: 11px; color: var(--text-light); }
+
+    /* ── REQUIREMENTS ── */
+    .req-area { margin-bottom: 32px; }
+    .req-area-title {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .req-block { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px rgba(90,158,147,0.09); margin-bottom: 12px; }
+    .req-block-header { background: var(--bg-alt); padding: 12px 20px; font-size: 13px; font-weight: 700; color: var(--text); border-bottom: 1px solid var(--border); }
+    .req-table { width: 100%; border-collapse: collapse; }
+    .req-table tr { border-bottom: 1px solid var(--border); }
+    .req-table tr:last-child { border-bottom: none; }
+    .req-table th { width: 110px; padding: 12px 16px; background: var(--bg-alt); font-size: 12px; font-weight: 700; color: var(--text-light); text-align: left; vertical-align: top; }
+    .req-table td { padding: 12px 16px; font-size: 13px; color: var(--text); line-height: 1.75; }
+    .req-note {
+      font-size: 11px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-top: 16px;
+      padding: 12px 16px;
+      background: var(--bg-alt);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary-light);
+    }
+
+    /* ── SHOPS ── */
+    .shops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; max-width: 800px; margin: 0 auto; }
+    .shop-tag { background: var(--white); border-radius: 50px; padding: 8px 16px; text-align: center; font-size: 13px; color: var(--primary-dark); border: 1px solid var(--primary-light); font-weight: 500; }
+
+    /* ── CTA SECTION ── */
+    .cta-section { background: linear-gradient(135deg, #3D6B62 0%, #2A4E47 100%); padding: 88px 20px; text-align: center; color: #fff; }
+    .cta-section h2 { font-family: 'Noto Serif JP', serif; font-size: clamp(22px, 5vw, 34px); font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+    .cta-section p  { font-size: 14px; opacity: 0.87; margin-bottom: 36px; line-height: 1.9; }
+    .cta-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 36px; }
+    .btn-cta-main {
+      background: var(--accent);
+      color: #fff;
+      padding: 17px 44px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 24px rgba(255,122,80,0.40);
+      transition: all 0.25s;
+    }
+    .btn-cta-main:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,122,80,0.50); }
+    .btn-cta-tel {
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      padding: 17px 36px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.50);
+      transition: all 0.25s;
+    }
+    .btn-cta-tel:hover { background: rgba(255,255,255,0.28); }
+    .cta-note { font-size: 12px; opacity: 0.70; margin-top: -16px; margin-bottom: 32px; }
+    .cta-tel-info { font-size: 22px; font-weight: 700; letter-spacing: 0.1em; color: rgba(255,255,255,0.95); margin-bottom: 8px; }
+    .cta-tel-note { font-size: 12px; opacity: 0.70; }
+
+    /* ── FOOTER ── */
+    footer { background: #1A130F; color: rgba(255,255,255,0.55); padding: 48px 20px 80px; font-size: 12px; line-height: 1.9; text-align: center; }
+    footer .footer-name { font-family: 'Noto Serif JP', serif; font-size: 16px; color: rgba(255,255,255,0.90); margin-bottom: 12px; font-weight: 600; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.10s; }
+    .reveal-delay-2 { transition-delay: 0.20s; }
+    .reveal-delay-3 { transition-delay: 0.30s; }
+    .reveal-delay-4 { transition-delay: 0.40s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .section { padding: 64px 16px; }
+      .req-table th { width: 86px; font-size: 11px; padding: 10px 12px; }
+      .req-table td { font-size: 12px; padding: 10px 12px; }
+      .faq-a-inner { padding-left: 24px; }
+      .cta-btns .btn-cta-main, .cta-btns .btn-cta-tel { padding: 14px 28px; font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-apply" target="_blank" rel="noopener">応募する</a>
+  <a href="https://lin.ee/pGsiGmi" class="btn-line-sticky" target="_blank" rel="noopener">💬 LINEで相談</a>
+  <a href="tel:0455485913" class="btn-consult">電話する</a>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active">
+      <picture>
+        <source media="(max-width: 767px)" srcset="./images/hero1-sp.jpg">
+        <img src="./images/hero1-pc.jpg" alt="">
+      </picture>
+    </div>
+    <div class="hero-slide">
+      <picture>
+        <source media="(max-width: 767px)" srcset="./images/hero2-sp.jpg">
+        <img src="./images/hero2-pc.jpg" alt="" loading="lazy">
+      </picture>
+    </div>
+    <div class="hero-slide">
+      <picture>
+        <source media="(max-width: 767px)" srcset="./images/hero3-sp.jpg">
+        <img src="./images/hero3-pc.jpg" alt="" loading="lazy">
+      </picture>
+    </div>
+    <div class="hero-slide">
+      <picture>
+        <source media="(max-width: 767px)" srcset="./images/hero4-sp.jpg">
+        <img src="./images/hero4-pc.jpg" alt="" loading="lazy">
+      </picture>
+    </div>
+    <div class="hero-slide">
+      <picture>
+        <source media="(max-width: 767px)" srcset="./images/hero5-sp.jpg">
+        <img src="./images/hero5-pc.jpg" alt="" loading="lazy">
+      </picture>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-tagline">ここから訪問看護リハビリケア　看護師募集</p>
+    <h1 class="hero-title">
+      「自分が目指した看護は<br>これでいいのか？」
+      <span class="hero-title-sub">自分が命に対する感情が薄くなっているんではないかと感じ、悩んだ方へ。</span>
+    </h1>
+    <p class="hero-sub">横浜市・川崎市でご自宅に近い店舗を複数ご案内します。</p>
+    <div class="hero-badges">
+      <span class="hero-badge">🌿 土日祝休み</span>
+      <span class="hero-badge">🌙 夜勤なし</span>
+      <span class="hero-badge">📋 件数は自分で選べる</span>
+      <span class="hero-badge">👤 未経験スタッフ9割</span>
+      <span class="hero-badge">💰 月収342,500円〜</span>
+    </div>
+    <div class="hero-btns">
+      <a href="https://lin.ee/pGsiGmi" class="btn-hero-line" target="_blank" rel="noopener">💬 LINEで気軽に相談（1分）</a>
+      <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-hero-main" target="_blank" rel="noopener">応募フォームへ</a>
+      <a href="#cta" class="btn-hero-sub">電話で相談する</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- wave: hero → hook -->
+<div class="wave" style="background:transparent;">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C360,48 1080,0 1440,24 L1440,48 L0,48 Z" fill="#FDF4EE"/>
+  </svg>
+</div>
+
+<!-- ═══ HOOK ═══ -->
+<section class="hook-section">
+  <div class="container">
+    <div class="hook-intro reveal">
+      <h2 class="section-title">自分の大切な人を<br>看てもらいたいと思えるサービスを</h2>
+      <div class="divider"></div>
+      <p style="margin-top:20px; font-size:15px; color:var(--text-light); line-height:1.95;">
+        私たちは、スタッフ一人ひとりが「ここで働いていてよかった」と思える職場をつくることが、<br>
+        利用者様への最高のサービスにつながると信じています。
+      </p>
+    </div>
+    <div class="hook-cards">
+      <div class="hook-card reveal reveal-delay-1">
+        <div class="icon">😔</div>
+        <h3>病院勤務に<br>疲れていませんか？</h3>
+        <p>忙しすぎて患者さんとゆっくり話す時間もない。そんな日々が続いていませんか。</p>
+      </div>
+      <div class="hook-card reveal reveal-delay-2">
+        <div class="icon">🌙</div>
+        <h3>夜勤を<br>なくしましょう。</h3>
+        <p>体力的に限界、家族との時間がとれない。訪問看護なら夜勤なしで働けます。</p>
+      </div>
+      <div class="hook-card reveal reveal-delay-3">
+        <div class="icon">❤️</div>
+        <h3>患者さんと<br>ゆっくり関わりたい。</h3>
+        <p>一人ひとりの生活に寄り添う看護がしたい。そう思ってこの仕事を選んだはずです。</p>
+      </div>
+    </div>
+    <div class="hook-answer reveal">
+      <p class="big-text">その想いを、<br>ここから実現できます。</p>
+      <p>ここから訪問看護リハビリケアには、「病院での働き方に疑問を感じて転職した」スタッフが多数います。<br>未経験でも、ブランクがあっても、丁寧なフォロー体制でスタートできる環境を整えています。</p>
+    </div>
+  </div>
+</section>
+
+<!-- wave: hook → numbers（dark） -->
+<div class="wave" style="background:var(--bg-alt);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C480,0 960,48 1440,24 L1440,48 L0,48 Z" fill="#3D6B62"/>
+  </svg>
+</div>
+
+<!-- ═══ NUMBERS ═══ -->
+<section class="numbers-section">
+  <div class="container">
+    <h2 class="numbers-title reveal">数字で見る「ここから」の安心</h2>
+    <div class="numbers-grid">
+      <div class="number-item reveal reveal-delay-1">
+        <div class="num">148<span>名</span></div>
+        <div class="num-label">スタッフ数<br>（グループ全体）</div>
+      </div>
+      <div class="number-item reveal reveal-delay-2">
+        <div class="num">9<span>割</span></div>
+        <div class="num-label">訪問看護<br>未経験スタート</div>
+      </div>
+      <div class="number-item reveal reveal-delay-3">
+        <div class="num">34.1<span>歳</span></div>
+        <div class="num-label">スタッフ<br>平均年齢</div>
+      </div>
+      <div class="number-item reveal reveal-delay-4">
+        <div class="num">19.9<span>%</span></div>
+        <div class="num-label">離職率<br>（低水準を維持）</div>
+      </div>
+    </div>
+    <div class="numbers-cta reveal">
+      <p>「働きやすい」を数字が証明しています。まずお気軽にご相談ください。</p>
+      <div class="numbers-cta-btns">
+        <a href="https://lin.ee/pGsiGmi" class="btn-line" target="_blank" rel="noopener" style="font-size:13px; padding:12px 24px;">💬 LINEで相談</a>
+        <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-nc-main" target="_blank" rel="noopener">応募する</a>
+        <a href="#cta" class="btn-nc-sub">話を聞いてみる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: numbers → features -->
+<div class="wave" style="background:#3D6B62;">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C360,48 1080,0 1440,24 L1440,48 L0,48 Z" fill="#FEFAF6"/>
+  </svg>
+</div>
+
+<!-- ═══ FEATURES（写真付きカード） ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Why Cocokara</span>
+      <h2 class="section-title">「ここから」で働く4つの理由</h2>
+      <div class="divider"></div>
+      <p class="section-lead">安心して長く働き続けられる環境を、ここから一緒につくっています。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal reveal-delay-1">
+        <img src="./images/feature1.jpg" alt="土日祝休みの職場風景" class="feature-card-photo">
+        <div class="feature-card-inner">
+          <div class="feature-icon">📅</div>
+          <h3>土日祝休み</h3>
+          <p>家族との時間を大切に。プライベートと仕事のバランスが保てます。</p>
+        </div>
+      </div>
+      <div class="feature-card reveal reveal-delay-2">
+        <img src="./images/feature2.jpg" alt="件数を選んで働いているスタッフ" class="feature-card-photo">
+        <div class="feature-card-inner">
+          <div class="feature-icon">🗓️</div>
+          <h3>件数を自分で選べる</h3>
+          <p>1日の訪問件数は相談して調整可能。無理なく自分らしいペースで。</p>
+        </div>
+      </div>
+      <div class="feature-card reveal reveal-delay-3">
+        <img src="./images/feature3.jpg" alt="研修・同行の様子" class="feature-card-photo">
+        <div class="feature-card-inner">
+          <div class="feature-icon">🎓</div>
+          <h3>充実の研修・同行制度</h3>
+          <p>先輩との同行期間あり。未経験でも安心してスタートできます。</p>
+        </div>
+      </div>
+      <div class="feature-card reveal reveal-delay-4">
+        <img src="./images/feature4.jpg" alt="社用車・iPad完備の様子" class="feature-card-photo">
+        <div class="feature-card-inner">
+          <div class="feature-icon">🚗</div>
+          <h3>社用車・iPad完備</h3>
+          <p>社用車、iPad、社用携帯を貸与。必要なものはすべて会社が用意。</p>
+        </div>
+      </div>
+    </div>
+    <!-- CTA① -->
+    <div class="inline-cta reveal">
+      <p>気になった方は、まずお気軽にご連絡ください。</p>
+      <div class="inline-cta-btns">
+        <a href="https://lin.ee/pGsiGmi" class="btn-line" target="_blank" rel="noopener" style="font-size:13px; padding:12px 24px;">💬 LINEで相談</a>
+        <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-ic-main" target="_blank" rel="noopener">応募する</a>
+        <a href="#cta" class="btn-ic-sub">話を聞いてみる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: features → work -->
+<div class="wave" style="background:var(--bg);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C480,48 960,0 1440,24 L1440,48 L0,48 Z" fill="#FDF4EE"/>
+  </svg>
+</div>
+
+<!-- ═══ WORK CONTENT ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Work Content</span>
+      <h2 class="section-title">仕事内容</h2>
+      <div class="divider"></div>
+      <p class="section-lead">利用者様のご自宅へ伺い、その方らしい生活を支えます。</p>
+    </div>
+    <div class="work-split">
+      <div class="work-card reveal reveal-delay-1">
+        <div class="work-card-header">
+          <h3>看護師の仕事</h3>
+          <p>正看護師 / 准看護師</p>
+        </div>
+        <div class="work-card-body">
+          <ul>
+            <li>バイタルサインの確認・健康状態の観察</li>
+            <li>医療処置（点滴・褥瘡処置・カテーテル管理など）</li>
+            <li>服薬管理・指導</li>
+            <li>医師・ケアマネジャー等との連携</li>
+            <li>ご家族への介護指導・相談対応</li>
+            <li>療養上の相談・生活指導</li>
+            <li>精神科訪問看護（研修取得後）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="work-photo reveal reveal-delay-2">
+        <img src="./images/photo_work.jpg" alt="看護師が利用者様のご自宅でケアをしている様子">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: work → flow -->
+<div class="wave" style="background:var(--bg-alt);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C360,0 1080,48 1440,24 L1440,48 L0,48 Z" fill="#FEFAF6"/>
+  </svg>
+</div>
+
+<!-- ═══ DAY FLOW（丸型写真付きタイムライン） ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Day Flow</span>
+      <h2 class="section-title">1日の流れ</h2>
+      <div class="divider"></div>
+      <p class="section-lead">残業が少なく、メリハリのある1日を過ごせます。</p>
+    </div>
+    <div class="flow-split">
+      <div class="flow-timeline">
+        <div class="flow-item reveal">
+          <div class="flow-time">9:00</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow1.jpg" alt="" class="flow-step-photo">
+              <h4>出勤・朝礼</h4>
+            </div>
+            <p>その日の訪問スケジュールを確認。不安なことは先輩に相談できます。</p>
+          </div>
+        </div>
+        <div class="flow-item reveal">
+          <div class="flow-time">9:30</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow2.jpg" alt="" class="flow-step-photo">
+              <h4>午前の訪問（2〜3件）</h4>
+            </div>
+            <p>社用車で利用者様のご自宅へ。1件60分でゆっくり関われます。</p>
+          </div>
+        </div>
+        <div class="flow-item reveal">
+          <div class="flow-time">12:00</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow3.jpg" alt="" class="flow-step-photo">
+              <h4>昼休憩（1時間）</h4>
+            </div>
+            <p>ステーションに戻ってランチ。スタッフとの会話でリフレッシュ。</p>
+          </div>
+        </div>
+        <div class="flow-item reveal">
+          <div class="flow-time">13:00</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow4.jpg" alt="" class="flow-step-photo">
+              <h4>午後の訪問（2〜3件）</h4>
+            </div>
+            <p>午後も同様に訪問。iPadで記録しながら移動できます。</p>
+          </div>
+        </div>
+        <div class="flow-item reveal">
+          <div class="flow-time">17:30</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow5.jpg" alt="" class="flow-step-photo">
+              <h4>帰社・記録・申し送り</h4>
+            </div>
+            <p>その日の記録・引き継ぎ。気になることはその場で相談できます。</p>
+          </div>
+        </div>
+        <div class="flow-item reveal">
+          <div class="flow-time">18:00</div>
+          <div class="flow-dot"></div>
+          <div class="flow-content">
+            <div class="flow-content-top">
+              <img src="./images/flow6.jpg" alt="" class="flow-step-photo">
+              <h4>退勤</h4>
+            </div>
+            <p>残業は最小限。プライベートの時間をしっかり確保できます。</p>
+          </div>
+        </div>
+      </div>
+      <div class="flow-photo reveal reveal-delay-1">
+        <img src="./images/photo_flow.jpg" alt="訪問看護師が移動中の様子">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Our Team</span>
+      <h2 class="section-title">スタッフ・職場の雰囲気</h2>
+      <div class="divider"></div>
+      <p class="section-lead">「自分の大切な人を看てもらいたい」と思えるサービスを、チームで届けています。</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="./images/hero1-pc.jpg" alt="スタッフ全体集合写真">
+        <div class="gallery-caption">チームで学び、共に成長する</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="./images/hero2-pc.jpg" alt="訪問看護の様子">
+        <div class="gallery-caption">一人ひとりの生活に寄り添う</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="./images/hero3-pc.jpg" alt="スタッフが楽しく働いている様子">
+        <div class="gallery-caption">笑顔あふれる職場環境</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="./images/hero4-pc.jpg" alt="看護師が電話対応している様子">
+        <div class="gallery-caption">丁寧なコミュニケーション</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="./images/hero5-pc.jpg" alt="利用者と看護師の様子">
+        <div class="gallery-caption">信頼関係を大切に</div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="./images/photo_gallery.jpg" alt="訪問看護の現場">
+        <div class="gallery-caption">ご自宅でのケアを丁寧に</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">よくある不安・疑問にお答えします</h2>
+      <div class="divider"></div>
+      <p class="section-lead">「訪問看護って不安…」そんな気持ち、正直に聞かせてください。</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">訪問看護は未経験ですが、大丈夫でしょうか？</div><div class="faq-toggle"></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>安心してください。スタッフの約9割が訪問看護未経験でスタートしています。</strong><br>先輩スタッフとの同行訪問期間を設けており、「1人でできる」という自信がつくまで焦らず進んでいきます。</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">夜勤はありますか？オンコールが心配です。</div><div class="faq-toggle"></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>夜勤はありません。</strong>基本的に土日祝日休み・日勤のみの勤務です。<br>オンコール対応については別途手当を支給しています。詳細は採用面談でご説明します。</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">1人で利用者様のお宅に行くのが不安です。</div><div class="faq-toggle"></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>最初は必ず先輩スタッフが同行します。</strong>一定期間の同行訪問を経て少しずつ移行していきます。<br>訪問中に困ったことがあればすぐにステーションに連絡でき、管理者・先輩がバックアップします。</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">子育て中でも働けますか？</div><div class="faq-toggle"></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>もちろんです。育児中のスタッフも多数活躍しています。</strong><br>訪問件数の調整が可能なので、お子さんの状況に合わせた働き方ができます。パート（週2日〜、午前のみ・午後のみも可）も対応しています。</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><div class="faq-q-icon">Q</div><div class="faq-q-text">ブランクがありますが、復職できますか？</div><div class="faq-toggle"></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><strong>ブランクのある方も安心してご応募ください。</strong><br>丁寧な同行研修と定期的なフォローアップで、しっかり現場に慣れていただけます。</div></div>
+      </div>
+    </div>
+    <!-- CTA② -->
+    <div class="inline-cta reveal">
+      <p>他にも気になることがあれば、お気軽にご相談ください。</p>
+      <div class="inline-cta-btns">
+        <a href="https://lin.ee/pGsiGmi" class="btn-line" target="_blank" rel="noopener" style="font-size:13px; padding:12px 24px;">💬 LINEで相談</a>
+        <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-ic-main" target="_blank" rel="noopener">応募する</a>
+        <a href="#cta" class="btn-ic-sub">まず話を聞いてみる</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: faq → voices -->
+<div class="wave" style="background:var(--bg);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C480,48 960,0 1440,24 L1440,48 L0,48 Z" fill="#FDF4EE"/>
+  </svg>
+</div>
+
+<!-- ═══ STAFF VOICES（写真付きカード） ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Staff Voice</span>
+      <h2 class="section-title">スタッフの声</h2>
+      <div class="divider"></div>
+      <p class="section-lead">実際に働くスタッフのリアルな声をご紹介します。</p>
+    </div>
+    <div class="voices-grid">
+      <div class="voice-card reveal reveal-delay-1">
+        <img src="./images/voice_n.jpg" alt="Nさん" class="voice-card-photo">
+        <div class="voice-quote">"</div>
+        <p class="voice-text">歴が浅く入職したため、病院に染まっていなかったので全てが新鮮で特にギャップは感じなかった。むしろ、1人の利用者さんとじっくり関われることが楽しいと感じました。</p>
+        <div class="voice-author">
+          <div>
+            <div class="voice-name">Nさん</div>
+            <div class="voice-role">看護師 / 入職2年目</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card reveal reveal-delay-2">
+        <img src="./images/voice_a.jpg" alt="Aさん" class="voice-card-photo">
+        <div class="voice-quote">"</div>
+        <p class="voice-text">ギャップを感じるというより、日々学びが多く楽しかった。病院とは違う知識やスキルが身につき、自分の成長を実感できる環境です。</p>
+        <div class="voice-author">
+          <div>
+            <div class="voice-name">Aさん</div>
+            <div class="voice-role">看護師 / 入職3年目</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card reveal reveal-delay-3">
+        <img src="./images/voice_i.jpg" alt="Iさん" class="voice-card-photo">
+        <div class="voice-quote">"</div>
+        <p class="voice-text">病棟勤務と比べると5日連勤＋2日休みが最初は慣れるまで大変でした。でも夜勤がなくなったことで体が楽になり、今は余裕を持って働けています。</p>
+        <div class="voice-author">
+          <div>
+            <div class="voice-name">Iさん</div>
+            <div class="voice-role">看護師 / 元病棟勤務</div>
+          </div>
+        </div>
+      </div>
+      <div class="voice-card reveal reveal-delay-4">
+        <img src="./images/voice_m.jpg" alt="Mさん" class="voice-card-photo">
+        <div class="voice-quote">"</div>
+        <p class="voice-text">病院でやってることと在宅のギャップはすごく感じました！なので何年目で訪問の世界に来ても勉強する環境は一緒です！早く来たほうがいい！（笑）</p>
+        <div class="voice-author">
+          <div>
+            <div class="voice-name">Mさん</div>
+            <div class="voice-role">看護師 / 元急性期病院勤務</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ REQUIREMENTS ═══ -->
+<section class="section" id="requirements">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Recruitment</span>
+      <h2 class="section-title">募集要項</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="req-area reveal">
+      <div class="req-area-title">🏥 神奈川県エリア（正社員）</div>
+      <div class="req-block">
+        <div class="req-block-header">正看護師</div>
+        <table class="req-table">
+          <tr><th>勤務時間</th><td>平日 9:00〜18:00</td></tr>
+          <tr><th>基本給</th><td>280,000円</td></tr>
+          <tr><th>訪問手当</th><td>月81時間超過後、60分訪問1件につき 4,000円</td></tr>
+          <tr><th>休日</th><td>土・日・祝祭日</td></tr>
+        </table>
+      </div>
+      <div class="req-block">
+        <div class="req-block-header">准看護師</div>
+        <table class="req-table">
+          <tr><th>勤務時間</th><td>平日 9:00〜18:00</td></tr>
+          <tr><th>基本給</th><td>252,000円</td></tr>
+          <tr><th>訪問手当</th><td>月81時間超過後、60分訪問1件につき 3,600円</td></tr>
+          <tr><th>休日</th><td>土・日・祝祭日</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="req-area reveal">
+      <div class="req-area-title">🏥 神奈川県エリア（パート）</div>
+      <div class="req-block">
+        <table class="req-table">
+          <tr><th>勤務時間</th><td>平日 9:00〜18:00　週2日〜、午前のみ・午後のみも可</td></tr>
+          <tr><th>正看護師</th><td>60分訪問1件につき 4,000円〜</td></tr>
+          <tr><th>准看護師</th><td>60分訪問1件につき 3,600円〜</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="req-area reveal">
+      <div class="req-area-title">✨ 手当・待遇・福利厚生</div>
+      <div class="req-block">
+        <table class="req-table">
+          <tr><th>手当</th><td>オンコール手当、通勤手当、休日手当</td></tr>
+          <tr><th>賞与</th><td>年2回（業績による）</td></tr>
+          <tr><th>社会保険</th><td>健康保険・厚生年金・雇用保険・労災保険</td></tr>
+          <tr><th>備品貸与</th><td>社用車、iPad、社用携帯、訪問バッグ、制服、防寒具</td></tr>
+          <tr><th>その他</th><td>健康診断（年1回）、インフルエンザワクチン費用負担、精神科訪問看護研修費負担、駐車場完備</td></tr>
+        </table>
+      </div>
+    </div>
+    <p class="req-note reveal">
+      ※ 正社員・パートともに訪問件数の調整が可能です。ご相談ください。<br>
+      ※ 桜木町店のみ営業時間が 8:45〜17:15 となります。休日対応も異なりますので採用面談にてご確認ください。<br>
+      ※ 自動車運転免許が必要です。
+    </p>
+  </div>
+</section>
+
+<!-- ═══ SHOPS ═══ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center reveal">
+      <span class="section-label">Locations</span>
+      <h2 class="section-title">事業所一覧</h2>
+      <div class="divider"></div>
+      <p class="section-lead">本部：神奈川県横浜市港北区新横浜3丁目6-1 新横浜SRビル3階（新横浜駅より徒歩1分）</p>
+    </div>
+    <div class="reveal">
+      <p style="text-align:center; font-size:13px; color:var(--text-light); margin-bottom:20px; font-weight:700;">【神奈川県・東京都】</p>
+      <div class="shops-grid">
+        <div class="shop-tag">中山</div>
+        <div class="shop-tag">あざみ野</div>
+        <div class="shop-tag">センター南</div>
+        <div class="shop-tag">大倉山</div>
+        <div class="shop-tag">片倉</div>
+        <div class="shop-tag">上星川</div>
+        <div class="shop-tag">東戸塚</div>
+        <div class="shop-tag">桜木町</div>
+        <div class="shop-tag">弘明寺</div>
+        <div class="shop-tag">港南台</div>
+        <div class="shop-tag">田奈</div>
+        <div class="shop-tag">二俣川</div>
+        <div class="shop-tag">瀬谷</div>
+        <div class="shop-tag">宮前平（川崎）</div>
+        <div class="shop-tag">玉川学園（町田）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- wave: shops → CTA -->
+<div class="wave" style="background:var(--bg-alt);">
+  <svg viewBox="0 0 1440 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,24 C360,0 1080,48 1440,24 L1440,48 L0,48 Z" fill="#3D6B62"/>
+  </svg>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2 class="reveal">まずは、話を聞いてみませんか？</h2>
+    <p class="reveal">「転職しようか迷っている」「もう少し話を聞きたい」<br>そんな段階でも大歓迎です。お気軽にご連絡ください。</p>
+    <div class="cta-btns reveal">
+      <a href="https://lin.ee/pGsiGmi" class="btn-line" target="_blank" rel="noopener">💬 LINEで気軽に相談・見学（1分）</a>
+    </div>
+    <div class="cta-btns reveal" style="margin-top:-8px;">
+      <a href="https://forms.gle/UXiUpBRirnQ5PRbq5" class="btn-cta-main" target="_blank" rel="noopener">応募フォームから相談する</a>
+      <a href="tel:0455485913" class="btn-cta-tel">📞 電話で問い合わせる</a>
+    </div>
+    <p class="cta-note reveal">※ 応募後のご連絡は営業日3日以内を目安にお返しします</p>
+    <div class="reveal">
+      <div class="cta-tel-info">045-548-5913</div>
+      <div class="cta-tel-note">受付時間：平日 9:00〜18:00</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-name">ここから訪問看護リハビリケア</div>
+  <p>本部：〒222-0033 神奈川県横浜市港北区新横浜3丁目6-1 新横浜SRビル3階<br>新横浜駅 出入り口「6」「3」より徒歩1分　TEL：045-548-5913</p>
+  <p style="margin-top:20px; font-size:11px; opacity:0.40;">© ここから訪問看護リハビリケア. All rights reserved.</p>
+</footer>
+
+<script>
+  // Hero Slideshow
+  (function() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    setInterval(function() {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
+  })();
+
+  // Scroll Reveal
+  (function() {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.10 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  })();
+
+  // Sticky CTA
+  (function() {
+    const cta  = document.getElementById('stickyCta');
+    const hero = document.querySelector('.hero');
+    new IntersectionObserver(function(entries) {
+      cta.classList.toggle('visible', !entries[0].isIntersecting);
+    }, { threshold: 0 }).observe(hero);
+  })();
+
+  // FAQ Toggle
+  document.querySelectorAll('.faq-q').forEach(function(q) {
+    q.addEventListener('click', function() {
+      const item = q.closest('.faq-item');
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!open) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
