@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>株式会社D'EFFORT | トータルケアカンパニー</title>
+  <meta name="description" content="株式会社D'EFFORT（デフォート）は、神奈川県横浜市を中心に、医療・美容・生活支援をワンストップで提供するトータルケアカンパニーです。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:        #CC2222;
+      --gray-dark:  #2D2D2D;
+      --gray-mid:   #666666;
+      --gray-light: #999999;
+      --gray-bg:    #F5F5F5;
+      --white:      #FFFFFF;
+      --border:     #E0E0E0;
+      --shadow:     0 4px 24px rgba(0,0,0,0.08);
+      --radius:     12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--gray-dark);
+      background: var(--white);
+      line-height: 1.85;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo img {
+      height: 32px;
+      width: auto;
+    }
+    .header-nav {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .header-nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gray-mid);
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--red); }
+    @media (max-width: 699px) {
+      .header-nav { display: none; }
+      header { padding: 0 20px; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 64px;
+      position: relative;
+      height: calc(100svh - 64px);
+      min-height: 480px;
+      max-height: 800px;
+      overflow: hidden;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.10) 100%);
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 48px;
+    }
+    .hero-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 38px);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+    .hero-sub {
+      font-size: clamp(12px, 1.8vw, 14px);
+      color: rgba(255,255,255,0.80);
+      line-height: 1.9;
+      max-width: 480px;
+    }
+    @media (max-width: 699px) {
+      .hero-content { padding: 32px 24px; }
+      .hero { max-height: 600px; }
+    }
+
+    /* ── SECTION ── */
+    .section { padding: 88px 24px; }
+    .section-gray { background: var(--gray-bg); }
+    .container { max-width: 1000px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 14px;
+      color: var(--gray-mid);
+      line-height: 2.0;
+      max-width: 680px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-top: 48px;
+    }
+    .about-text p {
+      font-size: 14px;
+      color: var(--gray-mid);
+      line-height: 2.1;
+      margin-bottom: 16px;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .stat-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gray-dark);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-num span { font-size: 18px; }
+    .stat-label { font-size: 12px; color: var(--gray-light); line-height: 1.5; }
+    @media (max-width: 699px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── BUSINESS ── */
+    .business-category { margin-bottom: 72px; }
+    .business-category:last-child { margin-bottom: 0; }
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .category-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.1em;
+    }
+    .category-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gray-dark);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .service-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.25s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .service-card:hover {
+      border-color: var(--red);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .service-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .service-logo-placeholder {
+      width: 72px;
+      height: 72px;
+      border-radius: 12px;
+      background: var(--gray-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .service-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-dark);
+      line-height: 1.5;
+    }
+    .service-arrow {
+      font-size: 11px;
+      color: var(--red);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-top: auto;
+    }
+    @media (max-width: 699px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--gray-dark);
+      color: rgba(255,255,255,0.55);
+      padding: 56px 24px 40px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 2.0;
+    }
+    .footer-logo img { height: 28px; margin: 0 auto 20px; filter: brightness(0) invert(1); opacity: 0.7; }
+    .footer-address { margin-bottom: 24px; }
+    .footer-copy { font-size: 11px; opacity: 0.4; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-logo">
+    <img src="./images/logo-deffort.png" alt="株式会社D'EFFORT">
+  </div>
+  <nav>
+    <ul class="header-nav">
+      <li><a href="#about">会社概要</a></li>
+      <li><a href="#business">事業一覧</a></li>
+      <li><a href="https://deffort.co.jp/" target="_blank" rel="noopener">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="./images/hero-top.png" alt="D'EFFORT グループ" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-label">D'EFFORT Inc.</p>
+    <h1 class="hero-title">自分の大切な人を<br>看てもらいたいと思えるサービスを</h1>
+    <p class="hero-sub">医療・美容・生活支援をワンストップで提供する<br>トータルケアカンパニー</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="container">
+    <p class="section-eyebrow">About Us</p>
+    <h2 class="section-title">株式会社D'EFFORT（デフォート）</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>神奈川県横浜市を中心に、医療・美容・生活支援をワンストップで提供するトータルケアカンパニーです。</p>
+        <p>主軸となる訪問看護ステーション事業を神奈川・千葉・東京に展開し、在宅での療養生活を専門職が支えます。</p>
+        <p>「美と健康」の分野では、美容室・訪問美容の運営をはじめ、医療的ケアが必要な方でも安心して利用できる美容サービスを提供。就労継続支援・便利屋・キッチンカー・物販など、地域の皆様の「自分らしい生活」を包括的にサポートしています。</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">3<span>事業</span></div>
+          <div class="stat-label">医療・美容・<br>生活支援</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">9<span>拠点</span></div>
+          <div class="stat-label">神奈川・千葉・<br>東京エリア</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">148<span>名</span></div>
+          <div class="stat-label">グループ<br>スタッフ数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">10<span>+</span></div>
+          <div class="stat-label">サービス・<br>ブランド数</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section class="section section-gray" id="business">
+  <div class="container">
+    <p class="section-eyebrow">Our Business</p>
+    <h2 class="section-title">事業一覧</h2>
+    <p class="section-lead" style="margin-bottom:56px;">医療・介護から日々の暮らしの「困った」まで、地域の皆様を点と線でつなぎます。</p>
+
+    <!-- 事業①：訪問看護 -->
+    <div class="business-category">
+      <div class="category-header">
+        <span class="category-num">01</span>
+        <h3 class="category-title">訪問看護・リハビリテーション事業</h3>
+      </div>
+      <div class="services-grid">
+        <a href="https://deffort.co.jp/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-cocokara.png" alt="ここから訪問看護リハビリケア" class="service-logo" style="width:100px;height:72px;object-fit:contain;">
+          <div class="service-name">ここから訪問看護<br>リハビリケア</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 事業②：美容 -->
+    <div class="business-category">
+      <div class="category-header">
+        <span class="category-num">02</span>
+        <h3 class="category-title">美容室・訪問美容サービス</h3>
+      </div>
+      <div class="services-grid">
+        <a href="https://beauty.hotpepper.jp/slnH000485094/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-oak.png" alt="OAKあざみ野" class="service-logo">
+          <div class="service-name">OAK あざみ野</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://beauty.hotpepper.jp/slnH000504447/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-oakplus.png" alt="OAK plusセンター南" class="service-logo">
+          <div class="service-name">OAK plus<br>センター南</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://beauty.hotpepper.jp/slnH000651092/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-oaknachul.png" alt="OAK×NACHUL成城学園前" class="service-logo">
+          <div class="service-name">OAK×NACHUL<br>成城学園前</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://deffort.co.jp/nicoplus/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-nicoplus.png" alt="nico plus訪問美容" class="service-logo">
+          <div class="service-name">nico plus<br>訪問美容</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://www.cocokaramakizume.com/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo_makizume.png" alt="巻き爪専門院" class="service-logo">
+          <div class="service-name">巻き爪専門院</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://liberty-d.com/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-nachul.png" alt="小顔専門店なちゅり" class="service-logo">
+          <div class="service-name">小顔専門店<br>なちゅり</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 事業③：就労継続支援 -->
+    <div class="business-category">
+      <div class="category-header">
+        <span class="category-num">03</span>
+        <h3 class="category-title">就労継続支援・生活サポート事業</h3>
+      </div>
+      <div class="services-grid">
+        <a href="https://liberty-clabo.com/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-clabo.png" alt="チャレンジラボ" class="service-logo">
+          <div class="service-name">就労継続支援B型<br>チャレンジラボ</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+        <a href="https://www.rakuten.co.jp/liberty-2024/" target="_blank" rel="noopener" class="service-card">
+          <img src="./images/logo-liberty.png" alt="楽天市場リバティ良品" class="service-logo">
+          <div class="service-name">楽天市場<br>リバティ良品</div>
+          <div class="service-arrow">サイトへ →</div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="./images/logo-deffort.png" alt="D'EFFORT Inc.">
+  </div>
+  <div class="footer-address">
+    〒222-0033 神奈川県横浜市港北区新横浜3丁目6-1 新横浜SRビル3階<br>
+    TEL：045-548-5913
+  </div>
+  <div class="footer-copy">© 株式会社D'EFFORT. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
