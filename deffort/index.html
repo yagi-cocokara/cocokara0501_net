@@ -214,6 +214,61 @@
       .cards { grid-template-columns: 1fr; }
     }
 
+    /* MOBILE SLIDESHOW */
+    .mobile-slides {
+      display: none;
+      position: relative;
+      height: 56vw;
+      min-height: 240px;
+      max-height: 360px;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute; inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .slide.active { opacity: 1; }
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.10) 60%);
+    }
+    .slide-body {
+      position: absolute;
+      bottom: 40px; left: 24px; right: 24px;
+    }
+    .slide-cat {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .slide-body h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px; font-weight: 600;
+      color: #fff; line-height: 1.5;
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 14px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 6px;
+    }
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.40);
+      transition: background 0.3s;
+    }
+    .dot.active { background: #fff; }
+    @media (max-width: 699px) {
+      .mobile-slides { display: block; }
+      .hero { display: none; }
+    }
+
     /* FOOTER */
     footer {
       background: var(--dark);
@@ -258,6 +313,68 @@
   <div class="hero-body">
     <h1>自分の大切な人を<br>看てもらいたいと<br>思えるサービスを</h1>
     <p>医療・美容・生活支援をワンストップで提供する<br>トータルケアカンパニー</p>
+  </div>
+</section>
+
+<!-- MOBILE SLIDESHOW -->
+<section class="mobile-slides">
+  <div class="slide active" style="background-image:url('./image/slide1.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">訪問看護・リハビリテーション</p>
+      <h3>ここから訪問看護<br>リハビリケア</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide2.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">美容室</p>
+      <h3>OAK / OAK plus<br>OAK×NACHUL</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide3.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">訪問美容</p>
+      <h3>nico plus<br>訪問美容</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide4.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">美容・健康</p>
+      <h3>巻き爪専門院<br>小顔専門店なちゅり</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide5.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">就労継続支援</p>
+      <h3>チャレンジラボ<br>リバティ良品</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide6.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">生活サポート</p>
+      <h3>便利屋サービス</h3>
+    </div>
+  </div>
+  <div class="slide" style="background-image:url('./image/slide7.jpg')">
+    <div class="slide-overlay"></div>
+    <div class="slide-body">
+      <p class="slide-cat">フードサービス</p>
+      <h3>キッチンカー</h3>
+    </div>
+  </div>
+  <div class="slide-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
   </div>
 </section>
 
@@ -380,6 +497,22 @@
           </div>
           <span class="card-link">サイトへ →</span>
         </a>
+        <a href="./image/benriya.pdf" target="_blank" rel="noopener" class="card">
+          <img src="./image/logo-benriya.png" alt="便利屋サービス" class="card-logo">
+          <div class="card-body">
+            <div class="card-name">便利屋サービス</div>
+            <div class="card-desc">介護の現場発！安心と信頼の便利屋サービス</div>
+          </div>
+          <span class="card-link">資料を見る →</span>
+        </a>
+        <a href="https://liftoff0301.com/" target="_blank" rel="noopener" class="card">
+          <img src="./image/logo-rental.png" alt="キッチンカー" class="card-logo">
+          <div class="card-body">
+            <div class="card-name">キッチンカー</div>
+            <div class="card-desc">街に笑顔を届けるキッチンカー事業</div>
+          </div>
+          <span class="card-link">サイトへ →</span>
+        </a>
       </div>
     </div>
 
@@ -394,5 +527,20 @@
   <p class="footer-copy">© 株式会社D'EFFORT. All rights reserved.</p>
 </footer>
 
+<script>
+  (function() {
+    var slides = document.querySelectorAll('.slide');
+    var dots   = document.querySelectorAll('.dot');
+    var cur    = 0;
+    if (!slides.length) return;
+    setInterval(function() {
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }, 3500);
+  })();
+</script>
 </body>
 </html>
