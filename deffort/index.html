@@ -72,7 +72,7 @@
     }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(120deg, rgba(10,10,10,0.60) 0%, rgba(10,10,10,0.20) 70%);
+      background: rgba(0,0,0,0.08);
     }
     .hero-body {
       position: absolute; inset: 0;
@@ -80,21 +80,8 @@
       justify-content: flex-end;
       padding: 56px 52px;
     }
-    .hero-body h1 {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(24px, 4.5vw, 44px);
-      font-weight: 600;
-      color: #fff;
-      line-height: 1.55;
-      margin-bottom: 16px;
-      max-width: 560px;
-    }
-    .hero-body p {
-      font-size: clamp(12px, 1.8vw, 14px);
-      color: rgba(255,255,255,0.75);
-      max-width: 420px;
-      line-height: 1.9;
-    }
+    .hero-body h1 { display: none; }
+    .hero-body p { display: none; }
     @media (max-width: 699px) {
       .hero-body { padding: 40px 24px; }
     }
