@@ -1,0 +1,22 @@
+#!/bin/bash
+# タスク管理アプリの起動スクリプト
+# アプリ本体(index.html)を決まった場所にコピーしてから開く。
+# 場所が毎回同じなので、ブラウザ内の保存データが引き継がれる。
+RES="$(cd "$(dirname "$0")/../Resources" && pwd)"
+DEST="$HOME/Library/Application Support/TaskGantt"
+mkdir -p "$DEST"
+cp -f "$RES/index.html" "$DEST/index.html"
+URL="file://${DEST// /%20}/index.html"
+
+# Chrome / Edge / Brave があれば、タブやアドレスバーのない「アプリ用ウインドウ」で開く
+for NAME in "Google Chrome" "Microsoft Edge" "Brave Browser"; do
+  for BASE in "/Applications" "$HOME/Applications"; do
+    if [ -d "$BASE/$NAME.app" ]; then
+      open -na "$BASE/$NAME.app" --args --app="$URL" --window-size=1440,900
+      exit 0
+    fi
+  done
+done
+
+# 見つからなければ標準のブラウザ（Safari など）で開く
+open "$DEST/index.html"
