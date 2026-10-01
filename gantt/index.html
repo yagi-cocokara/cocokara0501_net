@@ -225,6 +225,10 @@ body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:8px 16px;border-radius:8px;font-size:13.5px;z-index:300;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}
 .toast button{background:transparent;border:0;color:var(--accent);font-weight:700;padding:0}
 .toast[hidden]{display:none}
+.btn.file-ok{border-color:color-mix(in srgb,var(--ok) 45%,var(--line));color:var(--ok)}
+.btn.file-need{border-color:var(--hold);color:var(--hold);font-weight:600}
+.fbox{display:flex;flex-direction:column;gap:10px}
+.fstat{padding:10px 12px;border-radius:8px;background:var(--surface2);font-size:13.5px}
 .helpk{color:var(--faint);font-size:12px;margin-top:8px}
 
 @media (max-width: 760px){
@@ -245,7 +249,7 @@ body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none}
 <body>
 <div class="wrap">
   <h1><span aria-hidden="true">📋</span><span id="appTitle">タスクマネジメントシート</span></h1>
-  <p class="lead">タスク名左の ▶ で展開・折りたたみ。「開く」（スマホはタスク名をタップ）で編集・メモ・削除。バーはドラッグで移動、両端で期間変更。⋮⋮ をドラッグで並べ替え・別タスクの中へ移動できます。入力内容は自動保存されます。</p>
+  <p class="lead">タスク名左の ▶ で展開・折りたたみ。「開く」（スマホはタスク名をタップ）で編集・メモ・削除。バーはドラッグで移動、両端で期間変更。⋮⋮ をドラッグで並べ替え・別タスクの中へ移動できます。入力内容は自動保存されます（「💾 PCファイル連携」でPC内のファイルにも保存）。</p>
   <div class="summary" id="summary"></div>
 
   <div class="toolbar">
@@ -265,6 +269,7 @@ body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none}
       <button class="btn icon" id="btnUndo" type="button" title="元に戻す (Ctrl/⌘+Z)">↶</button>
       <button class="btn icon" id="btnRedo" type="button" title="やり直す (Ctrl/⌘+Shift+Z)">↷</button>
       <span class="save" id="saveState">保存済み</span>
+      <button class="btn" id="btnFile" type="button" hidden>💾 PCファイル連携</button>
       <button class="btn" id="btnBackup" type="button" title="全データをファイルに書き出し">バックアップ</button>
       <button class="btn" id="btnRestore" type="button">復元</button>
       <button class="btn primary" id="btnNew" type="button">＋ 新規</button>
@@ -395,7 +400,8 @@ function flush() {
     while (snaps.length > 14) snaps.shift();
     try { store.set(SNAP_KEY, JSON.stringify(snaps)); } catch { /* 容量不足ならスナップショットは諦める */ }
     setSave('saved');
-  } catch (e) { console.error(e); setSave('error'); }
+    writeFile(json);
+  } catch (e) { console.error(e); setSave('error'); try { writeFile(JSON.stringify(state)); } catch {} }
 }
 window.addEventListener('pagehide', () => { if (saveTimer) { clearTimeout(saveTimer); flush(); } });
 document.addEventListener('visibilitychange', () => { if (document.hidden && saveTimer) { clearTimeout(saveTimer); flush(); } });
@@ -405,6 +411,94 @@ window.addEventListener('storage', e => {
   try { state = normalize(JSON.parse(e.newValue)); render(); refreshPanel(); toast('別のタブでの変更を読み込みました'); } catch {}
 });
 try { navigator.storage?.persist?.(); } catch {}
+
+// ---------- PCファイル連携（Chrome / Edge）----------
+const FS_OK = typeof window.showSaveFilePicker === 'function' && typeof window.showOpenFilePicker === 'function';
+let fileHandle = null, fileState = 'none'; // none | ok | need | error
+let writeChain = Promise.resolve();
+const idb = {
+  db: null,
+  open() { return this.db || (this.db = new Promise((res, rej) => { const r = indexedDB.open('ganttApp', 1); r.onupgradeneeded = () => r.result.createObjectStore('kv'); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); })); },
+  async get(k) { const db = await this.open(); return new Promise((res, rej) => { const r = db.transaction('kv').objectStore('kv').get(k); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); },
+  async set(k, v) { const db = await this.open(); return new Promise((res, rej) => { const tx = db.transaction('kv', 'readwrite'); v === undefined ? tx.objectStore('kv').delete(k) : tx.objectStore('kv').put(v, k); tx.oncomplete = () => res(); tx.onerror = () => rej(tx.error); }); },
+};
+function updFileBtn() {
+  const b = $('#btnFile'); if (!b) return;
+  b.hidden = !FS_OK;
+  b.classList.toggle('file-ok', fileState === 'ok');
+  b.classList.toggle('file-need', fileState === 'need' || fileState === 'error');
+  b.textContent = fileState === 'ok' ? `💾 ${fileHandle.name}` : fileState === 'need' ? '💾 ファイル連携を再開' : fileState === 'error' ? '⚠ ファイルに保存できません' : '💾 PCファイル連携';
+  b.title = fileState === 'ok' ? 'このファイルに自動保存しています' : 'PC内のファイルにも自動保存できます';
+}
+function writeFile(json) {
+  if (!fileHandle || fileState !== 'ok') return;
+  writeChain = writeChain.then(async () => {
+    try { const w = await fileHandle.createWritable(); await w.write(json); await w.close(); }
+    catch (e) { console.error(e); fileState = 'error'; updFileBtn(); }
+  });
+}
+async function readFileState(h) { const f = await h.getFile(); const txt = await f.text(); return txt.trim() ? normalize(JSON.parse(txt)) : null; }
+async function attachHandle(h, preferFile) {
+  fileHandle = h; fileState = 'ok';
+  await idb.set('fileHandle', h).catch(() => {});
+  let fromFile = null;
+  try { fromFile = await readFileState(h); } catch {}
+  if (fromFile && fromFile.tasks.length && (preferFile || (fromFile.updatedAt || '') > (state.updatedAt || ''))) {
+    replaceState(fromFile, `「${h.name}」の内容を読み込みました`);
+  } else { clearTimeout(saveTimer); flush(); toast(`「${h.name}」に自動保存します`); }
+  updFileBtn();
+}
+async function fileNew() {
+  try {
+    const h = await window.showSaveFilePicker({ suggestedName: 'タスク管理データ.json', types: [{ description: 'タスクデータ', accept: { 'application/json': ['.json'] } }] });
+    await attachHandle(h, false);
+  } catch (e) { if (e.name !== 'AbortError') alert('ファイルを作成できませんでした: ' + e.message); }
+}
+async function fileOpen() {
+  try {
+    const [h] = await window.showOpenFilePicker({ types: [{ description: 'タスクデータ', accept: { 'application/json': ['.json'] } }] });
+    if ((await h.requestPermission({ mode: 'readwrite' })) !== 'granted') return;
+    let d; try { d = await readFileState(h); } catch (err) { alert('このファイルは読み込めませんでした。\n' + err.message); return; }
+    if (d && !confirm(`「${h.name}」（${d.tasks.length}件）を開いて、以後このファイルに自動保存しますか？\n現在の画面の内容はファイルの内容に置き換わります（↶ で戻せます）。`)) return;
+    await attachHandle(h, true);
+  } catch (e) { if (e.name !== 'AbortError') alert('ファイルを開けませんでした: ' + e.message); }
+}
+async function fileResume() {
+  try { if ((await fileHandle.requestPermission({ mode: 'readwrite' })) === 'granted') await attachHandle(fileHandle, false); }
+  catch (e) { alert('ファイルにアクセスできませんでした。移動・削除された可能性があります。\n「既存ファイルを開く」から選び直してください。'); }
+}
+async function fileUnlink() { fileHandle = null; fileState = 'none'; await idb.set('fileHandle', undefined).catch(() => {}); updFileBtn(); toast('ファイル連携を解除しました（ブラウザ内の保存は続きます）'); }
+async function initFile() {
+  if (!FS_OK) return updFileBtn();
+  try {
+    const h = await idb.get('fileHandle');
+    if (h) { fileHandle = h; const q = await h.queryPermission({ mode: 'readwrite' }); if (q === 'granted') await attachHandle(h, false); else fileState = 'need'; }
+  } catch (e) { console.warn(e); }
+  updFileBtn();
+}
+function openFilePanel() {
+  panelMode = 'file'; panelId = null;
+  ov.classList.add('center'); ov.hidden = false;
+  const st = fileState === 'ok' ? `✅ 「${esc(fileHandle.name)}」に自動保存中です。変更のたびにPCのファイルへ書き込みます。`
+    : fileState === 'need' ? `⏸ 「${esc(fileHandle.name)}」との連携が一時停止中です。ブラウザの仕様上、開き直すたびに許可が必要です。`
+    : fileState === 'error' ? `⚠ 「${esc(fileHandle.name)}」に書き込めませんでした。ファイルが移動・削除されていないか確認してください。`
+    : 'まだPCのファイルと連携していません。';
+  panel.innerHTML = `
+    <div class="ptop"><strong style="font-size:18px;margin-right:auto">PCファイル連携</strong><button class="btn icon" data-f2="close" type="button" aria-label="閉じる">✕</button></div>
+    <div class="fbox">
+      <div class="fstat">${st}</div>
+      <p class="meta" style="margin:0">連携すると、ブラウザ内の保存に加えて、PC内の .json ファイルにも自動で保存します。ブラウザの履歴を消してもデータが残り、OneDrive・Dropbox・iCloud Drive などのフォルダに置けば別のPCでも同じファイルを開けます。</p>
+      ${fileState === 'need' || fileState === 'error' ? `<button class="btn primary" data-f2="resume" type="button">「${esc(fileHandle.name)}」との連携を再開</button>` : ''}
+      <button class="btn${fileState === 'none' ? ' primary' : ''}" data-f2="new" type="button">新しいファイルを作って保存</button>
+      <button class="btn" data-f2="open" type="button">既存のファイルを開いて連携</button>
+      ${fileHandle ? `<button class="btn danger" data-f2="unlink" type="button">連携を解除</button>` : ''}
+    </div>`;
+  panel.onclick = async e => {
+    const a = e.target.closest('[data-f2]')?.dataset.f2; if (!a) return;
+    panel.onclick = null; closePanel();
+    if (a === 'resume') await fileResume(); else if (a === 'new') await fileNew(); else if (a === 'open') await fileOpen(); else if (a === 'unlink') await fileUnlink();
+  };
+}
 
 function pushUndo() { undoStack.push(JSON.stringify(state)); if (undoStack.length > 200) undoStack.shift(); redoStack = []; updUndoBtns(); }
 function commit(fn) { pushUndo(); fn(); save(); render(); }
@@ -1022,6 +1116,7 @@ $('#btnUndo').addEventListener('click', undo);
 $('#btnRedo').addEventListener('click', redo);
 $('#btnBackup').addEventListener('click', exportJson);
 $('#btnRestore').addEventListener('click', openRestore);
+$('#btnFile').addEventListener('click', () => fileState === 'need' ? fileResume() : openFilePanel());
 $('#btnNew').addEventListener('click', () => { const n = newTask(null, { name: '新しいタスク' }); commit(() => insertTask(n)); openTask(n.id, true); });
 
 document.addEventListener('keydown', e => {
@@ -1036,6 +1131,7 @@ let rzTimer; window.addEventListener('resize', () => { clearTimeout(rzTimer); rz
 if (!store.get(KEY)) flush(); else setSave('saved');
 render();
 if (state.prefs.view === 'gantt') scrollToDate(addDays(today(), -2));
+initFile();
 })();
 </script>
 </body>
