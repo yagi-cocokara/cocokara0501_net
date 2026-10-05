@@ -1,0 +1,6 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+anthropic>=1.11
+# 文字起こし（AI による間延び検出に必要。無音カットだけなら不要）
+faster-whisper>=1.0
