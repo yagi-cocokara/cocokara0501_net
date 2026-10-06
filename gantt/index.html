@@ -229,6 +229,11 @@ body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none}
 .btn.file-need{border-color:var(--hold);color:var(--hold);font-weight:600}
 .fbox{display:flex;flex-direction:column;gap:10px}
 .fstat{padding:10px 12px;border-radius:8px;background:var(--surface2);font-size:13.5px}
+.banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;margin:0 0 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface2);font-size:13.5px}
+.banner[hidden]{display:none}
+.banner span{flex:1;min-width:220px}
+.banner.warn{background:var(--hold-bg);border-color:color-mix(in srgb,var(--hold) 45%,transparent)}
+.banner.info{background:var(--accent-soft);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
 .helpk{color:var(--faint);font-size:12px;margin-top:8px}
 
 @media (max-width: 760px){
@@ -251,6 +256,7 @@ body.resizing,body.resizing *{cursor:ew-resize!important;user-select:none}
   <h1><span aria-hidden="true">📋</span><span id="appTitle">タスクマネジメントシート</span></h1>
   <p class="lead">タスク名左の ▶ で展開・折りたたみ。「開く」（スマホはタスク名をタップ）で編集・メモ・削除。バーはドラッグで移動、両端で期間変更。⋮⋮ をドラッグで並べ替え・別タスクの中へ移動できます。入力内容は自動保存されます（「💾 PCファイル連携」でPC内のファイルにも保存）。</p>
   <div class="summary" id="summary"></div>
+  <div class="banner" id="fileBanner" hidden></div>
 
   <div class="toolbar">
     <div class="tabs">
@@ -376,6 +382,7 @@ function load() {
   return null;
 }
 
+const FIRST_RUN = !store.get(KEY);
 let state = load() || sample();
 let undoStack = [], redoStack = [];
 let saveTimer = null;
@@ -429,6 +436,20 @@ function updFileBtn() {
   b.classList.toggle('file-need', fileState === 'need' || fileState === 'error');
   b.textContent = fileState === 'ok' ? `💾 ${fileHandle.name}` : fileState === 'need' ? '💾 ファイル連携を再開' : fileState === 'error' ? '⚠ ファイルに保存できません' : '💾 PCファイル連携';
   b.title = fileState === 'ok' ? 'このファイルに自動保存しています' : 'PC内のファイルにも自動保存できます';
+  // 画面上部の案内
+  const bn = $('#fileBanner');
+  if (!FS_OK || fileState === 'ok') { bn.hidden = true; return; }
+  bn.hidden = false;
+  if (fileState === 'need' || fileState === 'error') {
+    bn.className = 'banner warn';
+    bn.innerHTML = `<span>⏸ PCファイル「${esc(fileHandle.name)}」への保存が止まっています。ボタンを押して許可すると再開します（編集内容はブラウザ内に保存済みなので消えません）。</span><button class="btn primary" type="button" data-b="resume">保存を再開する</button>`;
+  } else if (FIRST_RUN) {
+    bn.className = 'banner info';
+    bn.innerHTML = `<span>はじめての起動です。以前のデータ（タスク管理データ.json など）がある場合は読み込んでください。表示中のタスクは見本です。</span><button class="btn primary" type="button" data-b="open">以前のファイルを読み込む</button><button class="btn" type="button" data-b="new">新しいファイルを作る</button>`;
+  } else {
+    bn.className = 'banner warn';
+    bn.innerHTML = `<span>データはこのブラウザの中にだけ保存されています。PCのファイルにも保存しておくと、ブラウザのデータが消えても安心です。</span><button class="btn primary" type="button" data-b="new">PCファイルに保存する</button><button class="btn" type="button" data-b="open">既存のファイルを読み込む</button>`;
+  }
 }
 function writeFile(json) {
   if (!fileHandle || fileState !== 'ok') return;
@@ -1116,6 +1137,10 @@ $('#btnUndo').addEventListener('click', undo);
 $('#btnRedo').addEventListener('click', redo);
 $('#btnBackup').addEventListener('click', exportJson);
 $('#btnRestore').addEventListener('click', openRestore);
+$('#fileBanner').addEventListener('click', e => {
+  const a = e.target.closest('[data-b]')?.dataset.b;
+  if (a === 'resume') fileResume(); else if (a === 'open') fileOpen(); else if (a === 'new') fileNew();
+});
 $('#btnFile').addEventListener('click', () => fileState === 'need' ? fileResume() : openFilePanel());
 $('#btnNew').addEventListener('click', () => { const n = newTask(null, { name: '新しいタスク' }); commit(() => insertTask(n)); openTask(n.id, true); });
 
