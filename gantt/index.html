@@ -325,6 +325,7 @@ const STATUS = {
 // ---------- storage ----------
 const KEY = 'ganttApp.v1';
 const SNAP_KEY = 'ganttApp.v1.snapshots';
+const FILE_BAK_KEY = 'ganttApp.v1.fileBackups'; // PCファイルを上書きする前の中身の控え（最大5件）
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { localStorage.setItem(k, v); },
@@ -445,7 +446,7 @@ function updFileBtn() {
     bn.innerHTML = `<span>⏸ PCファイル「${esc(fileHandle.name)}」への保存が止まっています。ボタンを押して許可すると再開します（編集内容はブラウザ内に保存済みなので消えません）。</span><button class="btn primary" type="button" data-b="resume">保存を再開する</button>`;
   } else if (FIRST_RUN) {
     bn.className = 'banner info';
-    bn.innerHTML = `<span>はじめての起動です。以前のデータ（タスク管理データ.json など）がある場合は読み込んでください。表示中のタスクは見本です。</span><button class="btn primary" type="button" data-b="open">以前のファイルを読み込む</button><button class="btn" type="button" data-b="new">新しいファイルを作る</button>`;
+    bn.innerHTML = `<span>はじめての起動です。以前のデータ（タスク管理データ.json など）がある場合は読み込んでください。表示中のタスクは見本です。</span><button class="btn primary" type="button" data-b="open">以前のファイルを読み込む</button><button class="btn" type="button" data-b="new">以前のデータはない（新しく作る）</button>`;
   } else {
     bn.className = 'banner warn';
     bn.innerHTML = `<span>データはこのブラウザの中にだけ保存されています。PCのファイルにも保存しておくと、ブラウザのデータが消えても安心です。</span><button class="btn primary" type="button" data-b="new">PCファイルに保存する</button><button class="btn" type="button" data-b="open">既存のファイルを読み込む</button>`;
@@ -466,12 +467,31 @@ async function attachHandle(h, preferFile) {
   try { fromFile = await readFileState(h); } catch {}
   if (fromFile && fromFile.tasks.length && (preferFile || (fromFile.updatedAt || '') > (state.updatedAt || ''))) {
     replaceState(fromFile, `「${h.name}」の内容を読み込みました`);
-  } else { clearTimeout(saveTimer); flush(); toast(`「${h.name}」に自動保存します`); }
+  } else {
+    if (fromFile && fromFile.tasks.length) {
+      // ファイルにしかないタスクがあるなら、上書きする前に確認する
+      const have = new Set(state.tasks.map(t => t.id));
+      const lost = fromFile.tasks.filter(t => !have.has(t.id)).length;
+      if (lost && confirm(`「${h.name}」には、今の画面にないタスクが${lost}件あります（ファイル全体で${fromFile.tasks.length}件）。\n\n［OK］ファイルの内容を読み込む（おすすめ）\n［キャンセル］今の画面の内容（${state.tasks.length}件）でファイルを上書きする`)) {
+        replaceState(fromFile, `「${h.name}」の内容を読み込みました`); updFileBtn(); return;
+      }
+      backupFileContent(h.name, fromFile);
+    }
+    clearTimeout(saveTimer); flush(); toast(`「${h.name}」に自動保存します`);
+  }
   updFileBtn();
 }
+function backupFileContent(name, d) {
+  if (JSON.stringify(d.tasks) === JSON.stringify(state.tasks)) return;
+  let list = []; try { list = JSON.parse(store.get(FILE_BAK_KEY) || '[]'); } catch {}
+  list.push({ at: new Date().toISOString(), name, count: d.tasks.length, json: JSON.stringify(d) });
+  while (list.length > 5) list.shift();
+  try { store.set(FILE_BAK_KEY, JSON.stringify(list)); } catch {}
+}
 async function fileNew() {
+  if (!confirm('新しい保存用ファイルを作ります。\n\nすでに「タスク管理データ.json」などのファイルがある場合は、［キャンセル］を押して「既存のファイルを開いて連携」を使ってください。同じ名前で保存すると、中身が今の画面の内容に置き換わってしまいます。\n\n新しいファイルを作りますか？')) return;
   try {
-    const h = await window.showSaveFilePicker({ suggestedName: 'タスク管理データ.json', types: [{ description: 'タスクデータ', accept: { 'application/json': ['.json'] } }] });
+    const h = await window.showSaveFilePicker({ suggestedName: `タスク管理データ-${today()}.json`, types: [{ description: 'タスクデータ', accept: { 'application/json': ['.json'] } }] });
     await attachHandle(h, false);
   } catch (e) { if (e.name !== 'AbortError') alert('ファイルを作成できませんでした: ' + e.message); }
 }
@@ -1076,13 +1096,17 @@ function openRestore() {
   panelMode = 'restore'; panelId = null;
   ov.classList.add('center'); ov.hidden = false;
   let snaps = []; try { snaps = JSON.parse(store.get(SNAP_KEY) || '[]'); } catch {}
+  let fbaks = []; try { fbaks = JSON.parse(store.get(FILE_BAK_KEY) || '[]'); } catch {}
   panel.innerHTML = `
     <div class="ptop"><strong style="font-size:18px;margin-right:auto">データの復元</strong><button class="btn icon" data-r="close" type="button" aria-label="閉じる">✕</button></div>
     <p class="meta" style="margin:0">復元すると現在のデータが置き換わります（直後なら ↶ 元に戻す で戻せます）。</p>
     <button class="btn primary" data-r="file" type="button">バックアップファイル（.json）から復元</button>
     <div><div class="meta" style="margin:8px 0 2px">自動保存の履歴（1日1件・最大14日分、このブラウザ内）</div>
     ${snaps.length ? snaps.slice().reverse().map((s, i) => `<div class="snap"><span>${s.date}<span class="meta">　${new Date(s.at).toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })} 時点・${s.count}件</span></span><button class="mini" data-snap="${snaps.length - 1 - i}" type="button">この時点に戻す</button></div>`).join('') : '<div class="meta">まだ履歴がありません</div>'}
-    </div>`;
+    </div>
+    ${fbaks.length ? `<div><div class="meta" style="margin:8px 0 2px">PCファイルを上書きする前の中身の控え（最大5件、このブラウザ内）</div>
+    ${fbaks.slice().reverse().map((b, i) => `<div class="snap"><span>${esc(b.name)}<span class="meta">　${new Date(b.at).toLocaleString('ja-JP', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })} 上書き前・${b.count}件</span></span><button class="mini" data-fbak="${fbaks.length - 1 - i}" type="button">この内容に戻す</button></div>`).join('')}
+    </div>` : ''}`;
   panel.onclick = e => {
     const r = e.target.closest('[data-r]')?.dataset.r;
     if (r === 'close') { panel.onclick = null; closePanel(); }
@@ -1091,6 +1115,11 @@ function openRestore() {
     if (si != null) {
       const s = snaps[Number(si)];
       if (confirm(`${s.date} 時点のデータ（${s.count}件）に戻しますか？`)) { panel.onclick = null; try { replaceState(JSON.parse(s.json), `${s.date} 時点に戻しました`); } catch (err) { alert('復元できませんでした: ' + err.message); } }
+    }
+    const fi = e.target.closest('[data-fbak]')?.dataset.fbak;
+    if (fi != null) {
+      const b = fbaks[Number(fi)];
+      if (confirm(`「${b.name}」の上書き前の内容（${b.count}件）に戻しますか？`)) { panel.onclick = null; try { replaceState(JSON.parse(b.json), '上書き前の内容に戻しました'); } catch (err) { alert('復元できませんでした: ' + err.message); } }
     }
   };
 }
