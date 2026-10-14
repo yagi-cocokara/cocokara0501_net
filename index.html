@@ -367,6 +367,7 @@
       color: #fff;
     }
     .hook-card p { font-size: 12px; color: rgba(255,255,255,0.88); line-height: 1.8; }
+    .hook-card p .nb { display: inline-block; } /* 言葉の途中で改行しないためのまとまり */
     .hook-answer { text-align: center; max-width: 680px; margin: 0 auto; }
     .hook-answer .big-text {
       font-family: 'Noto Serif JP', serif;
@@ -695,7 +696,8 @@
 
     /* ── SHOPS ── */
     .shops-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; max-width: 800px; margin: 0 auto; }
-    .shop-tag { background: var(--white); border-radius: 50px; padding: 8px 16px; text-align: center; font-size: 13px; color: var(--primary-dark); border: 1px solid var(--primary-light); font-weight: 500; }
+    .shop-tag { background: var(--white); border-radius: 50px; padding: 8px 16px; text-align: center; font-size: 13px; color: var(--primary-dark); border: 1px solid var(--primary-light); font-weight: 500; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+    .shop-open { display: block; font-size: 10px; font-weight: 700; color: var(--accent); line-height: 1.4; } /* 新規オープン表示 */
 
     /* ── CTA SECTION ── */
     .cta-section { background: linear-gradient(135deg, #3D6B62 0%, #2A4E47 100%); padding: 88px 20px; text-align: center; color: #fff; }
@@ -844,7 +846,7 @@
         <div class="hook-card-overlay"></div>
         <div class="hook-card-body">
           <h3>これって、<br>看護なのかな？</h3>
-          <p>忙しすぎて患者さんとゆっくり話す時間もない。<br>そんな日々が続いていませんか。</p>
+          <p><span class="nb">忙しすぎて</span><span class="nb">患者さんと</span><span class="nb">ゆっくり話す時間もない。</span><br><span class="nb">そんな日々が</span><span class="nb">続いていませんか。</span></p>
         </div>
       </div>
       <div class="hook-card reveal reveal-delay-2">
@@ -852,7 +854,7 @@
         <div class="hook-card-overlay"></div>
         <div class="hook-card-body">
           <h3>夜勤を<br>なくしましょう。</h3>
-          <p>夜勤のない規則正しい生活リズムが、相手と笑顔で<br>じっくり向き合う『心の余裕』に繋がります。</p>
+          <p><span class="nb">夜勤のない</span><span class="nb">規則正しい生活リズムが、</span><span class="nb">相手と笑顔で</span><span class="nb">じっくり向き合う</span><span class="nb">『心の余裕』に</span><span class="nb">繋がります。</span></p>
         </div>
       </div>
       <div class="hook-card reveal reveal-delay-3">
@@ -860,7 +862,7 @@
         <div class="hook-card-overlay"></div>
         <div class="hook-card-body">
           <h3>利用者さんと<br>ゆっくり関わりたい。</h3>
-          <p>一人ひとりの生活に寄り添う看護がしたい。<br>そう思ってこの仕事を選んだはずです。</p>
+          <p><span class="nb">一人ひとりの生活に</span><span class="nb">寄り添う看護がしたい。</span><br><span class="nb">そう思って</span><span class="nb">この仕事を</span><span class="nb">選んだはずです。</span></p>
         </div>
       </div>
     </div>
@@ -884,7 +886,7 @@
     <h2 class="numbers-title reveal">数字で見る「ここから」の安心</h2>
     <div class="numbers-grid">
       <div class="number-item reveal reveal-delay-1">
-        <div class="num">148<span>名</span></div>
+        <div class="num">155<span>名</span></div>
         <div class="num-label">スタッフ数<br>（グループ全体）</div>
       </div>
       <div class="number-item reveal reveal-delay-2">
@@ -896,8 +898,8 @@
         <div class="num-label">スタッフ<br>平均年齢</div>
       </div>
       <div class="number-item reveal reveal-delay-4">
-        <div class="num">19.9<span>%</span></div>
-        <div class="num-label">離職率<br>（低水準を維持）</div>
+        <div class="num">17<span>店舗</span></div>
+        <div class="num-label">店舗数<br>（直営11・FC6）</div>
       </div>
     </div>
     <div class="numbers-cta reveal">
@@ -1205,17 +1207,6 @@
     </div>
     <div class="voices-grid">
       <div class="voice-card reveal reveal-delay-1">
-        <img src="./images/voice_n.jpg" alt="Kさん" class="voice-card-photo">
-        <div class="voice-quote">"</div>
-        <p class="voice-text">歴が浅く入職したため、病院に染まっていなかったので全てが新鮮で特にギャップは感じなかった。むしろ、1人の利用者さんとじっくり関われることが楽しいと感じました。</p>
-        <div class="voice-author">
-          <div>
-            <div class="voice-name">Kさん</div>
-            <div class="voice-role">看護師 / 入職2年目</div>
-          </div>
-        </div>
-      </div>
-      <div class="voice-card reveal reveal-delay-2">
         <img src="./images/voice_a.jpg" alt="Tさん" class="voice-card-photo">
         <div class="voice-quote">"</div>
         <p class="voice-text">ギャップを感じるというより、日々学びが多く楽しかった。アセスメントが苦手と相談したら代表から本を貸してもらったことも。今では終末期ケア専門士、在宅看護指導士をとりました。（キリッ）</p>
@@ -1226,7 +1217,7 @@
           </div>
         </div>
       </div>
-      <div class="voice-card reveal reveal-delay-3">
+      <div class="voice-card reveal reveal-delay-2">
         <img src="./images/voice_i.jpg" alt="Mさん" class="voice-card-photo">
         <div class="voice-quote">"</div>
         <p class="voice-text">病棟勤務と比べると5日連勤＋2日休みが最初は慣れるまで大変でした。病棟の閉鎖的な空間から脱したのもあって、今は余裕を持って働けています。</p>
@@ -1237,7 +1228,7 @@
           </div>
         </div>
       </div>
-      <div class="voice-card reveal reveal-delay-4">
+      <div class="voice-card reveal reveal-delay-3">
         <img src="./images/voice_m.jpg" alt="Yさん" class="voice-card-photo">
         <div class="voice-quote">"</div>
         <p class="voice-text">病院でやってることと在宅のギャップはすごく感じました！なので何年目で訪問の世界に来ても勉強する環境は一緒です！早く来たほうがいい！（笑）</p>
@@ -1337,6 +1328,15 @@
         <div class="shop-tag">瀬谷</div>
         <div class="shop-tag">宮前平（川崎）</div>
         <div class="shop-tag">玉川学園（町田）</div>
+      </div>
+      <p style="text-align:center; font-size:13px; color:var(--text-light); margin:32px 0 20px; font-weight:700;">【千葉県】</p>
+      <div class="shops-grid">
+        <div class="shop-tag">茂原</div>
+        <div class="shop-tag">土気<span class="shop-open">10/1オープン</span></div>
+      </div>
+      <p style="text-align:center; font-size:13px; color:var(--text-light); margin:32px 0 20px; font-weight:700;">【鹿児島県】</p>
+      <div class="shops-grid">
+        <div class="shop-tag">鹿児島中央<span class="shop-open">9/1オープン</span></div>
       </div>
     </div>
   </div>
